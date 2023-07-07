@@ -1,0 +1,32 @@
+<div class="list-content">
+  <div class="items">
+    <div
+      *ngFor="
+        let item of list
+          | paginate
+            : {
+                itemsPerPage: itemsPerPage,
+                currentPage: currentPage,
+                totalItems: list.length
+              }
+      "
+    >
+      <div class="card">
+        <p class="h4 name">{{ item.name }}</p>
+        <div class="comments">
+          <p class="comment">Comentário de teste</p>
+          <button type="button" class="btn btn-outline-primary">
+            Adicionar comentário
+          </button>
+          <button type="button" class="btn btn-outline-danger">
+            Excluir comentário
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <pagination-controls
+    (pageChange)="currentPage = $event"
+  ></pagination-controls>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { PokeList } from './model/poke-list.model';
 import { ApiService } from './services/api/api.service';
 
 @Component({
@@ -11,4 +12,13 @@ import { ApiService } from './services/api/api.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  constructor(private service: ApiService) {}
+  ngOnInit(): void {
+    this.service.getPokemonList().subscribe({
+      next: (res: PokeList) => {
+        this.service.setMaxPokemon(res.count);
+      },
+    });
+  }
+}

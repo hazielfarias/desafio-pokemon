@@ -1,0 +1,56 @@
+.pagination-item {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.pagination-item.active {
+    background-color: blue;
+    color: #fff;
+    border: 1px solid blue;
+}
+
+.card{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 30px;
+    background-color: rgb(189, 219, 255);
+}
+.comments {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+}
+.comments .btn{
+    height: fit-content;
+}
+.name{
+    background-color: rgb(255, 179, 0);
+    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+}
+.comment{
+    width: 60%;
+    background-color: rgb(255, 179, 0);
+    padding: 20px;
+    border-radius: 30px;
+}
+.list-content{
+    text-align: center;
+}
+.items{
+    height: 50vh;
+    overflow: auto;
+    margin-bottom: 10px;
+}

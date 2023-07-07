@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { Pokemon } from 'src/app/model/pokemon.model';
 import { SimplePokeData } from 'src/app/model/poke-list.model';
 
 @Component({
@@ -13,6 +12,16 @@ import { SimplePokeData } from 'src/app/model/poke-list.model';
 })
 export class PokemonListComponent {
   @Input({ required: true }) list!: SimplePokeData[];
-  currentPage = 1;
+  @Input({ required: true }) favorites!: string[] | null;
+  @Output() clickAddFavorite = new EventEmitter<string>();
+  @Output() clickRemoveFavorite = new EventEmitter<string>();
+  public currentPage = 1;
   itemsPerPage = 10;
+
+  addFavorite(item: string) {
+    this.clickAddFavorite.emit(item);
+  }
+  removeFavorite(item: string) {
+    this.clickRemoveFavorite.emit(item);
+  }
 }

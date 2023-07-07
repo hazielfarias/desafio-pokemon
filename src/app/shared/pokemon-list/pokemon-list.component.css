@@ -54,3 +54,7 @@
     overflow: auto;
     margin-bottom: 10px;
 }
+
+.fav-btn{
+    display: flex;
+}

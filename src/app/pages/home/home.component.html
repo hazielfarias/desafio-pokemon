@@ -7,7 +7,7 @@
       srcset=""
     />
   </div>
-  <div class="input-group search">
+  <div class="input-group search" appScale>
     <input
       type="text"
       class="form-control"
@@ -31,6 +31,11 @@
     </span>
   </div>
   <div class="list-area">
-    <app-pokemon-list [list]="filteredList"></app-pokemon-list>
+    <app-pokemon-list
+      (clickAddFavorite)="addFavorite($event)"
+      (clickRemoveFavorite)="removeFavorite($event)"
+      [favorites]="favorites$ | async"
+      [list]="filteredList"
+    ></app-pokemon-list>
   </div>
 </div>

@@ -12,9 +12,9 @@ import { Comment } from 'src/app/model/comment.model';
   styleUrls: ['./pokemon-list.component.css'],
 })
 export class PokemonListComponent {
-  @Input({ required: true }) list!: SimplePokeData[];
-  @Input({ required: true }) comments!: Comment[] | null;
-  @Input({ required: true }) favorites!: string[] | null;
+  @Input({ required: true }) list: SimplePokeData[] = [];
+  @Input({ required: true }) comments: Comment[] = [];
+  @Input({ required: true }) favorites: string[] = [];
   @Output() clickAddFavorite = new EventEmitter<string>();
   @Output() clickRemoveFavorite = new EventEmitter<string>();
   @Output() clickAddComment = new EventEmitter<string>();
@@ -44,13 +44,21 @@ export class PokemonListComponent {
   hasComment(item: string) {
     return (
       this.comments &&
-      this.comments?.filter((i) => i.pokemonName == item).length > 0
+      this.comments.filter((i) => i.pokemonName == item)?.length > 0
     );
   }
+
   getComment(item: string) {
-    if (!this.comments) return 'Sem comentários';
-    const comment = this.comments?.filter((i) => i.pokemonName == item);
-    if (comment.length == 0) return 'Sem comentários';
+    if (!this.comments || this.comments.length === 0) {
+      return 'Sem comentários';
+    }
+
+    const comment = this.comments.filter((i) => i.pokemonName == item);
+
+    if (comment.length == 0) {
+      return 'Sem comentários';
+    }
+
     return comment[0].text;
   }
 }

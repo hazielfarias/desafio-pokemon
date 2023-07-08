@@ -37,8 +37,8 @@
       (clickRemoveComment)="removeComment($event)"
       (clickAddComment)="addComment($event)"
       (clickShowDetails)="showDetails($event)"
-      [comments]="comments$ | async"
-      [favorites]="favorites$ | async"
+      [comments]="(comments$ | async) || []"
+      [favorites]="(favorites$ | async) || []"
       [list]="filteredList"
     ></app-pokemon-list>
   </div>

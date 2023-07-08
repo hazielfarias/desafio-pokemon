@@ -26,6 +26,7 @@ export class CommentModalComponent {
   });
 
   close() {
+    this.form.reset();
     this.clickClose.emit();
   }
 

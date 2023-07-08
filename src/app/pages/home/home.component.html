@@ -34,8 +34,12 @@
     <app-pokemon-list
       (clickAddFavorite)="addFavorite($event)"
       (clickRemoveFavorite)="removeFavorite($event)"
+      (clickRemoveComment)="removeComment($event)"
+      (clickAddComment)="addComment($event)"
+      [comments]="comments$ | async"
       [favorites]="favorites$ | async"
       [list]="filteredList"
     ></app-pokemon-list>
   </div>
 </div>
+<app-comment-modal></app-comment-modal>

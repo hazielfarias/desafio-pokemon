@@ -5,14 +5,12 @@ export interface AppState {
   loading: boolean;
   comments: Comment[];
   favorites: string[];
-  id: number;
 }
 
 export const appInitialState: AppState = {
   loading: false,
-  comments: [],
+  comments: [{ pokemonName: 'bulbasaur', text: 'Comentário de exemplo' }],
   favorites: [],
-  id: 0,
 };
 
 export const startLoading = createAction('[App] Start loading');
@@ -20,6 +18,10 @@ export const stopLoading = createAction('[App] Stop loading');
 export const addComment = createAction(
   '[App] Add comment',
   props<{ item: Comment }>()
+);
+export const removeComment = createAction(
+  '[App] Remove comment',
+  props<{ item: string }>()
 );
 export const addFavorite = createAction(
   '[App] Add favorite',
@@ -53,9 +55,13 @@ export const appReducer = createReducer(
     return state;
   }),
   on(addComment, (state, { item }): AppState => {
-    item.id = state.id;
     const newCom = [...state.comments, item];
-    state = { ...state, comments: newCom, id: state.id + 1 };
+    state = { ...state, comments: newCom };
+    return state;
+  }),
+  on(removeComment, (state, { item }): AppState => {
+    const newCom = [...state.comments].filter((i) => item != i.pokemonName);
+    state = { ...state, comments: newCom };
     return state;
   })
 );

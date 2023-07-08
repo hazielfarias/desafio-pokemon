@@ -6,11 +6,4 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
-  {
-    path: 'favorites',
-    loadComponent: () =>
-      import('./pages/favorites/favorites.component').then(
-        (m) => m.FavoritesComponent
-      ),
-  },
 ];

@@ -8,6 +8,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { StoreService } from 'src/app/services/store/store.service';
 import { Observable } from 'rxjs';
 import { ScaleDirective } from 'src/app/shared/directives/scale.directive';
+import { Comment } from 'src/app/model/comment.model';
+import { CommentModalComponent } from 'src/app/shared/comment-modal/comment-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +19,7 @@ import { ScaleDirective } from 'src/app/shared/directives/scale.directive';
     PokemonListComponent,
     ReactiveFormsModule,
     ScaleDirective,
+    CommentModalComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
@@ -27,15 +30,18 @@ export class HomeComponent implements OnInit {
     private storeService: StoreService
   ) {
     this.favorites$ = storeService.getFavoritesState();
+    this.comments$ = storeService.getCommentsState();
   }
   @ViewChild(PokemonListComponent) pokeListComponent!: PokemonListComponent;
 
   favorites$: Observable<string[]>;
+  comments$: Observable<Comment[]>;
 
   list: SimplePokeData[] = [];
   filteredList: SimplePokeData[] = [];
 
   search: FormControl = new FormControl('');
+  isModalOpen = false;
 
   ngOnInit(): void {
     this.search.valueChanges.subscribe({
@@ -62,5 +68,11 @@ export class HomeComponent implements OnInit {
   }
   removeFavorite(item: string) {
     this.storeService.removeFavoriteState(item);
+  }
+  removeComment(item: string) {
+    this.storeService.removeCommentState(item);
+  }
+  addComment(item: string) {
+    console.log(item);
   }
 }

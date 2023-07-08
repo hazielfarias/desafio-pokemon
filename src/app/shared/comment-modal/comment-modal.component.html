@@ -1,0 +1,28 @@
+<button (click)="isModalOpen = true">Abrir Modal</button>
+
+<div class="custom-modal" [ngClass]="{ show: isModalOpen }">
+  <div class="custom-modal-dialog">
+    <div class="custom-modal-content">
+      <div class="custom-modal-header">
+        <h4 class="custom-modal-title">Título do Modal</h4>
+      </div>
+      <div class="custom-modal-body">Conteúdo do Modal</div>
+      <div class="custom-modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="isModalOpen = false"
+        >
+          Salvar Comentário
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="isModalOpen = false"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

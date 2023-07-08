@@ -14,11 +14,21 @@
       <div class="card">
         <p class="h4 name">{{ item.name }}</p>
         <div class="comments">
-          <p class="comment">Comentário de teste</p>
-          <button type="button" class="btn btn-outline-primary">
+          <p class="comment">{{ getComment(item.name) }}</p>
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            (click)="addComment(item.name)"
+            [disabled]="hasComment(item.name)"
+          >
             Adicionar comentário
           </button>
-          <button type="button" class="btn btn-outline-primary">
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="removeComment(item.name)"
+            [disabled]="!hasComment(item.name)"
+          >
             Excluir comentário
           </button>
           <button

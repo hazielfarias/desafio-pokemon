@@ -6,6 +6,7 @@ import {
   AppState,
   addComment,
   addFavorite,
+  removeComment,
   removeFavorite,
   startLoading,
   stopLoading,
@@ -44,5 +45,8 @@ export class StoreService {
   }
   addCommentState(item: Comment) {
     this.store.dispatch(addComment({ item }));
+  }
+  removeCommentState(item: string) {
+    this.store.dispatch(removeComment({ item }));
   }
 }

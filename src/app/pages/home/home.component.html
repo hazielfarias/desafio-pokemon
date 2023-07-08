@@ -36,10 +36,17 @@
       (clickRemoveFavorite)="removeFavorite($event)"
       (clickRemoveComment)="removeComment($event)"
       (clickAddComment)="addComment($event)"
+      (clickShowDetails)="showDetails($event)"
       [comments]="comments$ | async"
       [favorites]="favorites$ | async"
       [list]="filteredList"
     ></app-pokemon-list>
   </div>
 </div>
-<app-comment-modal></app-comment-modal>
+<app-comment-modal
+  [isModalOpen]="isModalOpen"
+  [pokemonName]="selectedPokemon"
+  (clickClose)="closeModal()"
+  (clickSaveComment)="saveComment($event)"
+></app-comment-modal>
+<router-outlet></router-outlet>

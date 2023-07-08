@@ -1,0 +1,47 @@
+<div class="custom-modal show">
+  <div class="custom-modal-dialog">
+    <div class="custom-modal-content">
+      <div class="custom-modal-header">
+        <h4 class="custom-modal-title">Detalhes do Pokemon</h4>
+        <button type="button" class="btn btn-danger" (click)="closeDetails()">
+          Fechar
+        </button>
+      </div>
+      <div class="custom-modal-body">
+        <div class="card">
+          <img
+            class="card-img-top"
+            [src]="data?.sprites?.other?.home?.front_default || ''"
+            alt="Pokemon Image not found"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ data?.name }}</h5>
+            <p class="card-text">Height: {{ data?.height }}</p>
+            <p class="card-text">Weight: {{ data?.weight }}</p>
+            <h6>Types:</h6>
+            <ul class="list-group">
+              <li *ngFor="let type of data?.types" class="list-group-item">
+                {{ type.type.name }}
+              </li>
+            </ul>
+            <h6>Stats:</h6>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Stat</th>
+                  <th>Base Stat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let stat of data?.stats">
+                  <td>{{ stat.stat.name }}</td>
+                  <td>{{ stat.base_stat }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,7 @@ export class PokemonListComponent {
   @Output() clickRemoveFavorite = new EventEmitter<string>();
   @Output() clickAddComment = new EventEmitter<string>();
   @Output() clickRemoveComment = new EventEmitter<string>();
+  @Output() clickShowDetails = new EventEmitter<string>();
   public currentPage = 1;
   itemsPerPage = 10;
 
@@ -35,6 +36,9 @@ export class PokemonListComponent {
 
   removeComment(item: string) {
     this.clickRemoveComment.emit(item);
+  }
+  showDetails(item: string) {
+    this.clickShowDetails.emit(item);
   }
 
   hasComment(item: string) {

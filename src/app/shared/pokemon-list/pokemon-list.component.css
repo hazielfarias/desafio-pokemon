@@ -39,6 +39,7 @@
     border-radius: 30px;
     display: flex;
     align-items: center;
+    gap: 20px;
 }
 .comment{
     width: 60%;
@@ -57,4 +58,8 @@
 
 .fav-btn{
     display: flex;
+}
+
+.info-item{
+    padding: 1px 7px 4px 7.5px ;
 }

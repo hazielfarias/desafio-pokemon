@@ -5,6 +5,13 @@ export interface Pokemon {
   height: number;
   weight: number;
   stats: PokeStat[];
+  sprites: {
+    other: {
+      home: {
+        front_default: string;
+      };
+    };
+  };
 }
 
 interface PokeType {

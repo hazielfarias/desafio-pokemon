@@ -9,7 +9,7 @@ export interface AppState {
 
 export const appInitialState: AppState = {
   loading: false,
-  comments: [{ pokemonName: 'bulbasaur', text: 'Comentário de exemplo' }],
+  comments: [],
   favorites: [],
 };
 

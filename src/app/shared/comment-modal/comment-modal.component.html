@@ -1,25 +1,41 @@
-<button (click)="isModalOpen = true">Abrir Modal</button>
-
 <div class="custom-modal" [ngClass]="{ show: isModalOpen }">
   <div class="custom-modal-dialog">
     <div class="custom-modal-content">
       <div class="custom-modal-header">
-        <h4 class="custom-modal-title">Título do Modal</h4>
+        <h4 class="custom-modal-title">Salvar Comentário</h4>
       </div>
-      <div class="custom-modal-body">Conteúdo do Modal</div>
+      <div class="custom-modal-body" [formGroup]="form">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Pokemon</span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Pokemon"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            [value]="pokemonName"
+            disabled
+          />
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Texto do comentário</span>
+          <textarea
+            class="form-control"
+            aria-label="With textarea"
+            formControlName="text"
+          ></textarea>
+        </div>
+      </div>
       <div class="custom-modal-footer">
         <button
           type="button"
           class="btn btn-primary"
-          (click)="isModalOpen = false"
+          [disabled]="!form.valid"
+          (click)="saveComment()"
         >
           Salvar Comentário
         </button>
-        <button
-          type="button"
-          class="btn btn-danger"
-          (click)="isModalOpen = false"
-        >
+        <button type="button" class="btn btn-danger" (click)="close()">
           Fechar
         </button>
       </div>

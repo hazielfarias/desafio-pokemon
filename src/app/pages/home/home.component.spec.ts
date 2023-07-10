@@ -131,6 +131,15 @@ describe('HomeComponent', () => {
     expect(component.isModalOpen).toBeFalse();
   });
 
+  it('should open modal when adding comment', () => {
+    const item = 'Pikachu';
+    spyOn(component, 'openModal');
+
+    component.addComment(item);
+
+    expect(component.openModal).toHaveBeenCalledWith(item);
+  });
+
   it('should save comment via StoreService', () => {
     const comment: Comment = { pokemonName: 'Pikachu', text: 'Test comment' };
 
@@ -146,5 +155,21 @@ describe('HomeComponent', () => {
     component.showDetails(pokemonName);
 
     expect(router.navigate).toHaveBeenCalledWith(['/details', pokemonName]);
+  });
+
+  it('should filter list when search value changes', () => {
+    const searchTerm = 'pikachu';
+    const mockList = [
+      { name: 'Pikachu', url: '' },
+      { name: 'Charmander', url: '' },
+      { name: 'Bulbasaur', url: '' },
+    ];
+    component.list = mockList;
+    component.filteredList = mockList;
+
+    component.search.setValue(searchTerm);
+
+    expect(component.filteredList.length).toBe(1);
+    expect(component.filteredList[0].name).toBe('Pikachu');
   });
 });

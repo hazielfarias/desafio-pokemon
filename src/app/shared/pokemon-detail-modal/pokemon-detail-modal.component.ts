@@ -25,13 +25,11 @@ export class PokemonDetailModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.parametro = this.route.snapshot.params['pokemon'];
-    console.log(this.parametro);
 
     if (this.parametro) {
       this.apiService.getPokemonData(this.parametro).subscribe({
         next: (res) => {
           this.data = res;
-          console.log(this.data);
         },
       });
     }

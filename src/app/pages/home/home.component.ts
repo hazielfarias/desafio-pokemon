@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
     this.openModal(item);
   }
   showDetails(event: string) {
-    this.router.navigate([`/details/${event}`]);
+    this.router.navigate(['/details', event]);
   }
   closeModal() {
     this.isModalOpen = false;

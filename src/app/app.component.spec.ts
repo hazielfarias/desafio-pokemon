@@ -10,7 +10,6 @@ import { LoadingComponent } from './shared/loading/loading.component';
 import { provideStore } from '@ngrx/store';
 
 describe('AppComponent', () => {
-  let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let apiService: ApiService;
   beforeEach(async () => {
@@ -22,7 +21,6 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
     apiService = TestBed.inject(ApiService);
     spyOn(apiService, 'getPokemonList').and.returnValue(
       of({ count: 10 } as PokeList)

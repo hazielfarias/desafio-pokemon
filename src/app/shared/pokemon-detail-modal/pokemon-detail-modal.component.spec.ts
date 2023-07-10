@@ -30,6 +30,24 @@ describe('PokemonDetailModalComponent', () => {
             getPokemonData: () => of({ name: 'Pikachu' } as Pokemon),
           },
         },
+        {
+          provide: Router,
+          useValue: {
+            navigate: jasmine.createSpy('navigate'),
+          },
+        },
+        {
+          provide: ApiService,
+          useValue: {
+            getPokemonData: jasmine.createSpy('getPokemonData').and.returnValue(
+              of({
+                name: 'Pikachu',
+                type: 'Electric',
+                abilities: ['Static', 'Lightning Rod'],
+              } as unknown as Pokemon)
+            ),
+          },
+        },
       ],
     }).compileComponents();
   });
@@ -49,5 +67,21 @@ describe('PokemonDetailModalComponent', () => {
 
   it('should initialize parametro with the value from the route params', () => {
     expect(component.parametro).toBe('Pikachu');
+  });
+
+  it('should navigate to home when closeDetails is called', () => {
+    component.closeDetails();
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
+  });
+
+  it('should retrieve pokemon data on ngOnInit and set it to data', () => {
+    component.ngOnInit();
+    expect(route.snapshot.params['pokemon']).toBe('Pikachu');
+    expect(apiService.getPokemonData).toHaveBeenCalledWith('Pikachu');
+    expect(component.data).toEqual({
+      name: 'Pikachu',
+      type: 'Electric',
+      abilities: ['Static', 'Lightning Rod'],
+    } as unknown as Pokemon);
   });
 });
